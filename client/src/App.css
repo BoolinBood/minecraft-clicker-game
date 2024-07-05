@@ -37,6 +37,23 @@
   padding: 2em;
 }
 
+.card button {
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  border: 2px solid #000;
+  border-radius: 0.3em;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.card button.effect {
+  background-color: red;
+  opacity: 0.4;
+}
+
 .read-the-docs {
   color: #888;
 }
