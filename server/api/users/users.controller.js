@@ -1,4 +1,4 @@
-const userService = require('../../database/service/userService');
+const userService = require('../database/service/userService');
 
 const regisUser = (req, res) => {
   const reqQuery = req.query;

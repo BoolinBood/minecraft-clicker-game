@@ -8,8 +8,8 @@
 	imageURL VARCHAR(20) NOT NULL
 */
 
-const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable } = require("../queries");
-const db = require('../connection');
+const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable } = require("../../database/queries");
+const db = require('../../database/connection');
 
 const TABLE_NAME = 'items';
 
