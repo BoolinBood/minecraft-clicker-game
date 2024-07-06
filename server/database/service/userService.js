@@ -1,7 +1,7 @@
 // User type
 /* 
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	inventoryId INT NOT NULL,
+	inventoryId INT UNIQUE NOT NULL,
 	username VARCHAR(20) UNIQUE NOT NULL,
 	password VARCHAR(20) NOT NULL,
 	stats_coins BIGINT,
@@ -9,54 +9,47 @@
 */
 
 const db = require('../connection');
+const {
+  getAllRows,
+  getRowById,
+  updateRowById,
+  deleteRowById,
+  clearTable,
+  dropTable
+} = require('../queries');
 
-const createUser = (obj) => {
-  const query = `
-    INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck) values(${obj.inventoryId}, ${obj.username}, ${obj.password}, ${obj.stats_coins}, ${obj.stats_luck})
-  `;
+const TABLE_NAME = 'users';
 
-  const result = db.query(query, (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-  
-  return result;
+const createUser = async (obj) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  const cols = keys.map(key => `${key}`).join(', ');
+  const sql = `INSERT INTO users (${cols}) VALUES (?, ?, ?, ?, ?)`;
+
+  try {
+    const [rows] = await db.execute(sql, values);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
 };
 
-const getUsers = () => {
-  const query = `SELECT * FROM users`;
-  const resultSets = db.query(query, (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-  return resultSets;
-};
+const getUsers = async () => await getAllRows(TABLE_NAME);
 
-const getUserById = (id) => {
-  const query = `SELECT * FROM users WHERE id = ${id}`;
-  const resultSets = db.query(query, (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-  return resultSets;
-};
+const getUserById = async (id) => await getRowById(TABLE_NAME, id);
 
-const updateUserById = (id, obj) => {
+const updateUserById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
 
-};
+const deleteUserById =  async (id) => await deleteRowById(TABLE_NAME, id);
 
-const deleteUserById = (id) => {
-  const query = `DELETE FROM users WHERE id = ${id}`;
-  const resultSets = db.query(query, (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-};
+const clearUserTable = async () => await clearTable(TABLE_NAME);
+
 
 module.exports = {
   createUser,
   getUsers,
   getUserById,
   updateUserById,
-  deleteUserById
+  deleteUserById,
+  clearUserTable,
 }

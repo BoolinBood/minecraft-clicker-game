@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const userRouter = require('./routes/userRouter');
 const router = express.Router();
 require('dotenv').config();
 
@@ -13,5 +14,6 @@ router.get('^/$|index(.html)?', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', router);
+app.use('/user', userRouter);
 
 const server = app.listen(PORT, SERVER_IP, () => console.log(`Server is running on ${SERVER_IP}:${PORT}`));
