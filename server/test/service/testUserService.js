@@ -15,9 +15,7 @@ const {
   updateUserById,
   deleteUserById,
   clearUserTable,
-  createUserTable,
-  dropUserTable
-} = require('../../database/service/userService');
+} = require('../../api/users/users.service');
 
 const decoyObjs = [
   {
@@ -76,4 +74,9 @@ const test = () => {
   .then(clearUserTable);
 }
 
-test();
+const createUsers = async () => {
+  decoyObjs.map(obj => createUser(obj));
+}
+
+// test();
+createUsers();
