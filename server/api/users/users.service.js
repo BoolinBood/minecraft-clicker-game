@@ -8,15 +8,14 @@
 	stats_luck DOUBLE
 */
 
-const db = require('../connection');
+const db = require('../../database/connection');
 const {
   getAllRows,
   getRowById,
   updateRowById,
   deleteRowById,
   clearTable,
-  dropTable
-} = require('../queries');
+} = require('../../database/queries');
 
 const TABLE_NAME = 'users';
 

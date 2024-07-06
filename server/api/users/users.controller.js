@@ -1,29 +1,40 @@
-const userService = require('../database/service/userService');
+const service = require('./users.service');
 
-const regisUser = (req, res) => {
-  const reqQuery = req.query;
-  const userObj = {
-    inventoryId: reqQuery.inventoryId,
-    username: reqQuery.username,
-    password: reqQuery.password,
-    stats_coins: reqQuery.coins,
-    stats_luck: reqQuery.luck
-  }
-  const result = userService.createUser(userObj);
+const createUser = async (req, res) => {
+  const userObj = req.query;
+  await service.createUser(userObj);
   res.json(userObj);
   return userObj;
 }
 
-const getUsers = (req, res) => {
-  const users = userService.getUsers();
-  res.json(users);
+const getUsers = async (req, res) => {
+  const users = await service.getUsers().then(result => res.json(result));
+  return users;
 };
-const getUserById = (req, res) => {};
-const updateUserById = (req, res) => {};
-const deleteUserById = (req, res) => {};
+
+const getUserById = async (req, res) => {
+  const id = req.params.id;
+  const user = await service.getUserById(id).then(result => res.json(result));
+  return user;
+};
+
+const updateUserById = async (req, res) => {
+  const id = req.params.id;
+  const userObj = req.query;
+  await service.updateUserById(id, userObj);
+  await service.getUserById(id).then(result => res.json(result));
+  return userObj;
+};
+
+const deleteUserById = async (req, res) => {
+  const id = req.params.id;
+  const user = await service.getUserById(id).then(result => res.json(result));
+  await service.deleteUserById(id);
+  return user; 
+};
 
 module.exports = {
-  regisUser,
+  createUser,
   getUsers,
   getUserById,
   updateUserById,
