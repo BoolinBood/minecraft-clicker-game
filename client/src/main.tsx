@@ -8,7 +8,7 @@ import './index.css'
 import SignInPage from './pages/sign-in-page/SignInPage.tsx';
 import ClickerPage from './pages/clicker-page/ClickerPage.tsx';
 import LeaderboardPage from './pages/leaderboard-page/LeaderboardPage.tsx';
-
+import StorePage from './pages/store-page/StorePage.tsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/leaderboard',
     element: <LeaderboardPage />
+  },
+  {
+    path: 'store',
+    element: <StorePage/>
   }
 ])
 
