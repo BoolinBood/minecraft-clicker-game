@@ -13,12 +13,12 @@ INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamon
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamond Pickaxe', 75, 'Uncommon', 0.3);
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Spider Eye', 10, 'Common', 0.5);
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Eye of Ender', 100, 'Rare', 0.1);
-INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Skeleton', 45, 'Uncommon', 0.25);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Bone', 45, 'Uncommon', 0.25);
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamond', 150, 'Epic', 0.05);
-INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Oak Log', 60, 'Rare', 0.1);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Glow Berries', 60, 'Rare', 0.1);
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Potion', 35, 'Common', 0.5);
-INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamond Boots', 80, 'Uncommon', 0.3);
-INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Wooden Stick', 200, 'Legendary', 0.01);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Enchanted Diamond Boots', 80, 'Uncommon', 0.3);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Stick', 200, 'Legendary', 0.01);
 
 INSERT INTO blocks (name, health, spawnChance) VALUES ('Stone', 100, 0.8);
 INSERT INTO blocks (name, health, spawnChance) VALUES ('Dirt', 50, 0.9);

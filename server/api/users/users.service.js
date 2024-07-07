@@ -24,8 +24,8 @@ const createUser = async (obj) => {
   const keys = Object.keys(obj);
   const values = Object.values(obj);
   const inventoryId = await getLatestUserInvId().then(result => Object.values(result[0])[0]);
-  const cols = keys.map(key => `${key}`).join(', ');
-  const sql = `INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck) VALUES (?, ?, ?, 0, 0)`;
+  // const cols = keys.map(key => `${key}`).join(', ');
+  const sql = `INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (?, ?, ?, 0, 0, 1)`;
 
   try {
     const [rows] = await db.execute(sql, [inventoryId + 1 ,...values]);
