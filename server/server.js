@@ -3,6 +3,9 @@ const path = require('path');
 const logEvents = require('./middleware/logEvents');
 const cors = require('cors');
 const userRouter = require('./api/users/users.router');
+const invRouter = require('./api/inventories/inventories.router');
+const itemRouter = require('./api/items/items.router');
+const blockRouter = require('./api/blocks/blocks.router');
 const router = express.Router();
 require('dotenv').config();
 
@@ -23,5 +26,8 @@ app.use((req, res, next) => {
 })
 app.use('/', router);
 app.use('/users', userRouter);
+app.use('/inventory', invRouter);
+app.use('/items', itemRouter);
+app.use('/blocks', blockRouter);
 
 const server = app.listen(PORT, SERVER_IP, () => console.log(`Server is running on ${SERVER_IP}:${PORT}`));

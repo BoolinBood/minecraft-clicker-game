@@ -33,6 +33,16 @@ const updateInventoryById = async (id, obj) => await updateRowById(TABLE_NAME, i
 
 const deleteInventoryById =  async (id) => await deleteRowById(TABLE_NAME, id);
 
+const getLatestInventoryId = async () => {
+  const sql = `SELECT MAX(ownedBy) FROM ${TABLE_NAME}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
 const clearInventoryTable = async () => await clearTable(TABLE_NAME);
 
 module.exports = {
@@ -41,5 +51,6 @@ module.exports = {
   getInventoryById,
   updateInventoryById,
   deleteInventoryById,
+  getLatestInventoryId,
   clearInventoryTable
 }

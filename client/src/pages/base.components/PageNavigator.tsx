@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router-dom"
 import Icon from "./Icon"
 
 interface Props {
   page: string
 }
 
-const PageNavigatorButton = ({iconFileName} : {iconFileName: string}) => {
+const PageNavigatorButton = ({iconFileName, pathTo} : {iconFileName: string, pathTo: string}) => {
+
+  const navigate = useNavigate();
+  const onClickHandler = () => {
+    navigate(`${pathTo}`);
+  }
+  
   return (
-    <div className="bg-secondary-700 w-12 h-12 rounded-full flex justify-center items-center">
+    <button onClick={onClickHandler} className="bg-secondary-700 w-12 h-12 rounded-full flex justify-center items-center">
       <Icon iconFileName={iconFileName}/>
-    </div>
+    </button>
   )
 }
 
@@ -17,11 +24,11 @@ const PageNavigator = ({page}: Props) => {
   return (
     page == 'clicker' ?
     <div className="flex flex-col gap-4">
-      <PageNavigatorButton  iconFileName="store"/>
-      <PageNavigatorButton  iconFileName="scale"/>
-      <PageNavigatorButton  iconFileName="trophy"/>
+      <PageNavigatorButton  iconFileName="store" pathTo="../store"/>
+      <PageNavigatorButton  iconFileName="scale" pathTo="../trade"/>
+      <PageNavigatorButton  iconFileName="trophy" pathTo="../leaderboard"/>
     </div> :
-    <PageNavigatorButton  iconFileName="chevron-left"/>
+    <PageNavigatorButton  iconFileName="chevron-left" pathTo="../clicker"/>
   )
 }
 

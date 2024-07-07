@@ -8,8 +8,17 @@ const createInventory = async (req, res) => {
 }
 
 const getInventories = async (req, res) => {
-  const inventories = await service.getInventories().then(result => res.json(result));
-  return inventories;
+  const filterMode = req.query.filter;
+  let result;
+  if (!filterMode) {
+    result = await service.getInventories().then(result => res.json(result));
+    return result;
+  } 
+  switch (filterMode) {
+    case 'latestId':
+      result = await service.getLatestInventoryId().then(result => res.json({id: result[0].id ? result[0].id : 1}));
+  }
+  return result;
 };
 
 const getInventoryById = async (req, res) => {

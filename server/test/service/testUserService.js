@@ -12,6 +12,7 @@ const {
   createUser,
   getUsers,
   getUserById,
+  getLatestUserInvId,
   updateUserById,
   deleteUserById,
   clearUserTable,
@@ -80,3 +81,4 @@ const createUsers = async () => {
 
 // test();
 createUsers();
+// console.log(getLatestUserInvId());

@@ -3,7 +3,7 @@ interface Props {
 }
 
 const Icon = ({iconFileName}: Props) => {
-  const iconPath = `../../public/assets/icons/${iconFileName}.svg`;
+  const iconPath = `/assets/icons/${iconFileName}.svg`;
 
   return (
     <img src={iconPath} alt="" />
