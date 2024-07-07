@@ -33,10 +33,24 @@ const deleteUserById = async (req, res) => {
   return user; 
 };
 
+const signInUser = async (req, res) => {
+  const username = req.query.username;
+  const password = req.query.password;
+  const foundUser = await service.getUserByUsername(username).then(res => res[0]);
+  if (foundUser) {
+    res.json({
+      username: foundUser.username,
+      passwordIsCorrect: foundUser.password == password
+    });
+  }
+  return foundUser;
+}
+
 module.exports = {
   createUser,
   getUsers,
   getUserById,
   updateUserById,
-  deleteUserById
+  deleteUserById,
+  signInUser
 }

@@ -37,6 +37,16 @@ const getUsers = async () => await getAllRows(TABLE_NAME);
 
 const getUserById = async (id) => await getRowById(TABLE_NAME, id);
 
+const getUserByUsername = async (username) => {
+  const sql = `SELECT * FROM ${TABLE_NAME} WHERE username = '${username}'`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+};
+
 const updateUserById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
 
 const deleteUserById =  async (id) => await deleteRowById(TABLE_NAME, id);
@@ -48,6 +58,7 @@ module.exports = {
   createUser,
   getUsers,
   getUserById,
+  getUserByUsername,
   updateUserById,
   deleteUserById,
   clearUserTable,

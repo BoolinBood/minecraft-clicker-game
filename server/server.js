@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const logEvents = require('./middleware/logEvents');
+const cors = require('cors');
 const userRouter = require('./api/users/users.router');
 const router = express.Router();
 require('dotenv').config();
@@ -13,6 +14,7 @@ router.get('^/$|index(.html)?', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use((req, res, next) => {
