@@ -12,19 +12,19 @@ const ItemCard: React.FC<CardProps> = ({ name, rarity, price }) => {
   return (
     <div className="font-segoe-ui bg-secondary-600 p-2 rounded-lg w-[170px] h-[244px] flex flex-col justify-between">
       <div>
-        <div className="mb-[20px] rounded bg-secondary-500 w-[154px] h-[104px] flex items-center justify-center">
+        <div className="mb-[20px] rounded bg-secondary-500  h-[104px] flex items-center justify-center">
           <img
             src={EnderEYE}
             alt="Eye of Ender"
             className="w-[94px] h-[64px]"
           />
         </div>
-        <div className="text-xs font-segoe-ui not-italic font-bold text-primary-100">
+        <div className="text-sm font-segoe-ui not-italic font-bold text-primary-100">
           {name}
         </div>
         <div className="text-xs font-thin text-pretty text-primary-100 flex items-center">
           Rarity:
-          <span className="inline ml-1 w-[46px] h-[19px]">
+          <span className="inline ml-1 w-16 ">
             <Icon iconFileName="mythic" />
           </span>
           {rarity}
@@ -38,7 +38,7 @@ const ItemCard: React.FC<CardProps> = ({ name, rarity, price }) => {
           </span>
         </span>
         <span className="font-bold text-xs not-italic font-segoe-ui">or</span>
-        <button className="font-bold text-xs not-italic font-segoe-ui px-4 py-0 text-primary-100 bg-accent-500 hover:bg-accent-600 rounded">
+        <button className="font-bold text-xs not-italic font-segoe-ui px-2 py-1 text-primary-100 bg-accent-500 hover:bg-accent-600 rounded">
           Trade
         </button>
       </div>
