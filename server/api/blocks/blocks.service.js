@@ -1,13 +1,12 @@
 // Block type
 /*
-  id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(20) NOT NULL,
-	health INT NOT NULL,
-	spawnChance DOUBLE NOT NULL,
-	imageURL VARCHAR(20) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    health INT NOT NULL,
+    spawnChance DOUBLE NOT NULL
 */
 
-const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable } = require("../../database/queries");
+const { getAllRows, getRowById, getRandomRows, updateRowById, deleteRowById, clearTable } = require("../../database/queries");
 const db = require('../../database/connection');
 
 const TABLE_NAME = 'blocks';
@@ -27,6 +26,8 @@ const createBlock = async (obj) => {
 };
 const getBlocks = async () => await getAllRows(TABLE_NAME);
 
+const getRandomBlocks = async (limit) => await getRandomRows(TABLE_NAME, limit)
+
 const getBlockById = async (id) => await getRowById(TABLE_NAME, id);
 
 const updateBlockById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
@@ -39,6 +40,7 @@ module.exports = {
   createBlock,
   getBlocks,
   getBlockById,
+  getRandomBlocks,
   updateBlockById,
   deleteBlockById,
   clearBlockTable

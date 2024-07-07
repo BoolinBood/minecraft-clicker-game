@@ -1,10 +1,12 @@
 // Inventory type
 /*
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(20) NOT NULL,
-	health INT NOT NULL,
-	spawnChance DOUBLE NOT NULL,
-	imageURL VARCHAR(20) NOT NULL
+    ownedBy INT NOT NULL,
+    itemId INT NOT NULL,
+    amount INT NOT NULL,
+    marketInfo_onMarket BOOLEAN,
+    marketInfo_price DOUBLE NOT NULL,
+    FOREIGN KEY (itemId) REFERENCES items(id),
+    FOREIGN KEY (ownedBy) REFERENCES users(id)
 */
 
 const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable } = require("../../database/queries");
@@ -33,6 +35,16 @@ const updateInventoryById = async (id, obj) => await updateRowById(TABLE_NAME, i
 
 const deleteInventoryById =  async (id) => await deleteRowById(TABLE_NAME, id);
 
+const getLatestInventoryId = async () => {
+  const sql = `SELECT MAX(ownedBy) FROM ${TABLE_NAME}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
 const clearInventoryTable = async () => await clearTable(TABLE_NAME);
 
 module.exports = {
@@ -41,5 +53,6 @@ module.exports = {
   getInventoryById,
   updateInventoryById,
   deleteInventoryById,
+  getLatestInventoryId,
   clearInventoryTable
 }

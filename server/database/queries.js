@@ -18,6 +18,15 @@ const getRowById = async (table, id) => {
     throw err;
   }
 };
+const getRandomRows = async (table, limit) => {
+  const sql = `SELECT * FROM ${table} ORDER BY RAND() LIMIT ${limit}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
 const updateRowById = async (table, id, obj) => {
   const keys = Object.keys(obj);
   const values = Object.values(obj);
@@ -64,6 +73,7 @@ const clearTable = async (table) => {
 module.exports = {
   getAllRows,
   getRowById,
+  getRandomRows,
   updateRowById,
   deleteRowById,
   createTable,

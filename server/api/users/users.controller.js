@@ -8,8 +8,17 @@ const createUser = async (req, res) => {
 }
 
 const getUsers = async (req, res) => {
-  const users = await service.getUsers().then(result => res.json(result));
-  return users;
+  const filterMode = req.query.filter;
+  let result;
+  if (!filterMode) {
+    result = await service.getUsers().then(result => res.json(result));
+    return result;
+  } 
+  switch (filterMode) {
+    case 'latestInvId':
+      result = await service.getLatestUserInvId().then(result => res.json({id: result[0].id}));
+  }
+  return result;
 };
 
 const getUserById = async (req, res) => {
@@ -39,7 +48,12 @@ const signInUser = async (req, res) => {
   const foundUser = await service.getUserByUsername(username).then(res => res[0]);
   if (foundUser) {
     res.json({
-      username: foundUser.username,
+      userdata: {
+        inventoryId: foundUser.inventoryId,
+        username: foundUser.username,
+        stats_coins: foundUser.stats_coins,
+        stats_luck: foundUser.stats_luck
+      },
       passwordIsCorrect: foundUser.password == password
     });
   }
