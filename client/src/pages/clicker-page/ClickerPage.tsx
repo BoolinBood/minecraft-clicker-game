@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PageNavigator from "../base.components/PageNavigator"
 import UserBar from "./components/userBar/UserBar"
-import { Block, ClickBlock, User } from "../../types";
+import { Block, User } from "../../types";
 import MinecraftBlock from "./components/MinecraftBlock";
 
 

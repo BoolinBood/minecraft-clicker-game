@@ -1,14 +1,24 @@
 import ItemCard from "./components/Itemcard"
 import SearchBar from "./components/Search";
 import PageNavigator from "../base.components/PageNavigator";
+import { useEffect, useState } from "react";
+import { Inventory } from "../../types";
+import axios from "axios";
 
 
 
 const StorePage = () => {
-    const cards = new Array(20).fill({
-        name: "Eye of Ender",
-        price: "10,000"
+    const API_URL = 'http://10.4.53.25:9999';
+    const [items, setItems] = useState<Inventory[]>([]);
+
+    useEffect(() => {
+      const url = `${API_URL}/inventory`;
+      axios.get(url).then(res => {
+        setItems([...res.data]);
+        console.log(res);
       });
+    }, []);
+    
       return (
         <div className="h-screen bg-fixed bg-secondary-800 text-white flex flex-col items-center">
           <span className="absolute top-1/2 left-4 transform -translate-y-1/2">
@@ -19,8 +29,8 @@ const StorePage = () => {
             <div
               className="max-h-[70vh] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6"
             >
-              {cards.map((card, index) => (
-                <ItemCard key={index} name={card.name} rarity={card.rarity} price={card.price} />
+              {items.map((item, index) => (
+                <ItemCard key={index} name={item.itemName} rarity={item.itemName} price={item.marketInfo_price} />
               ))}
             </div>
           </div>

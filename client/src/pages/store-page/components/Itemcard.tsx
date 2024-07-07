@@ -1,11 +1,11 @@
 import React from "react";
 import Icon from "../../base.components/Icon";
-import EnderEYE from "../../../../public/assets/EnderEYE.png";
+import EnderEYE from "/assets/images/items/Eye of Ender.webp";
 
 interface CardProps {
   name: string;
   rarity: string;
-  price: string;
+  price: number;
 }
 
 const ItemCard: React.FC<CardProps> = ({ name, rarity, price }) => {
@@ -14,9 +14,9 @@ const ItemCard: React.FC<CardProps> = ({ name, rarity, price }) => {
       <div>
         <div className="mb-[20px] rounded bg-secondary-500  h-[104px] flex items-center justify-center">
           <img
-            src={EnderEYE}
-            alt="Eye of Ender"
-            className="w-[94px] h-[64px]"
+            src={`/assets/images/items/${name}.webp`}
+            width={64}
+            height={64}
           />
         </div>
         <div className="text-sm font-segoe-ui not-italic font-bold text-primary-100">

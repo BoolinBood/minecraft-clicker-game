@@ -1,5 +1,5 @@
-import React, { SetStateAction, useEffect } from "react";
-import { Block, ClickBlock, Inventory, Item } from "../../../types";
+import React, { SetStateAction, useEffect, useState } from "react";
+import { Block } from "../../../types";
 import {motion} from 'framer-motion';
 import axios from "axios";
 
@@ -12,9 +12,14 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
   
   const API_URL = 'http://10.4.53.25:9999';
 
+  const [blockName, setBlockName] = useState<string>('');
+  
   const setNewBlock = async () => {
     const getBlockUrl = `${API_URL}/blocks?filter=random&limit=1`;
-    await axios.get(getBlockUrl).then(res => setState(res.data[0]));
+    await axios.get(getBlockUrl).then(res => {
+      setState(res.data[0]);
+      setBlockName(res.data[0].name);
+    });
   }
   
   useEffect(() => {
@@ -36,7 +41,7 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
       <motion.img 
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }} 
-        src={`/assets/images/blocks/${currentState?.imageURL}`}
+        src={`/assets/images/blocks/${blockName}.webp`}
       />
     </div>
   )

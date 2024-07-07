@@ -3,7 +3,8 @@ export type User = {
   inventoryId: number,
   username: string,
   stats_coins: number,
-  stats_luck: number
+  stats_luck: number,
+  stats_damage: number
 }
 
 export type Block = {
@@ -11,26 +12,21 @@ export type Block = {
   name: string,
   health: number,
   spawnChance: number,
-  imageURL: string
 }
 
 export type Item = {
   id: number,
   name: string,
-  price: number,
+  tradeValue: number,
   rarity_name: string,
   rarity_chance: number,
-  imageURL: string
 }
 
-export type ClickBlock = {
-  block: Block,
-  item: Item,
-}
 
 export type Inventory = {
   ownedBy: number,
   itemId: number,
+  itemName: string,
   amount: number,
   marketInfo_onMarket: boolean,
   marketInfo_price: number,

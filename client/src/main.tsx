@@ -8,6 +8,7 @@ import LeaderboardPage from "./pages/leaderboard-page/LeaderboardPage.tsx";
 import StorePage from "./pages/store-page/StorePage.tsx";
 import ConfirmPage from "./pages/confirm-page/ConfirmPage.tsx";
 import Trade from "./pages/trade-page/Trade.tsx";
+import SignUpPage from "./pages/sign-up-page/SignUpPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
     element: <StorePage />,
   },
   { path: "confirm",
-     element: <ConfirmPage /> },
+    element: <ConfirmPage /> 
+  },
   { path: "trade",
     element: <Trade />
   }
