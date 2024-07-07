@@ -8,7 +8,7 @@
 	imageURL VARCHAR(20) NOT NULL
 */
 
-const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable } = require("../../database/queries");
+const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable, getRandomRows } = require("../../database/queries");
 const db = require('../../database/connection');
 
 const TABLE_NAME = 'items';
@@ -29,6 +29,8 @@ const getItems = async () => await getAllRows(TABLE_NAME);
 
 const getItemById = async (id) => await getRowById(TABLE_NAME, id);
 
+const getRandomItems = async (limit) => await getRandomRows(TABLE_NAME, limit)
+
 const updateItemById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
 
 const deleteItemById =  async (id) => await deleteRowById(TABLE_NAME, id);
@@ -39,6 +41,7 @@ module.exports = {
   createItem,
   getItems,
   getItemById,
+  getRandomItems,
   updateItemById,
   deleteItemById,
   clearItemTable
