@@ -1,17 +1,21 @@
 export interface IBox {
   image: string;
 }
-
 interface IProps {
   item: IBox;
 }
 
-const BoxItems = ({ item }: IProps) => {
-  return (
-    <div className="bg-accent-200 w-[500px] h-[300px] m-2 flex items-center">
-      <img src={item.image} alt="item" />
-    </div>
-  );
-};
+import BookMagic from "../../../../public/assets/store.png"
 
-export default BoxItems;
+
+const BoxItems = ({ item }:IProps) => {
+  return (
+    <div className='bg-accent-200 w-9 h-9 m-2 flex items-center justify-center rounded'>
+        <div>
+          <img src={BookMagic} alt="" />
+        </div>
+    </div>
+  )
+}
+
+export default BoxItems
