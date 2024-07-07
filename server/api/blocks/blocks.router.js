@@ -1,7 +1,11 @@
 const express = require('express');
 const blockRouter = express.Router();
 const {
-  
+  createBlock,
+  getBlocks,
+  getBlockById,
+  updateBlockById,
+  deleteBlockById
 } = require('./blocks.controller');
 
 blockRouter.post('/', (req, res) => createBlock(req, res));

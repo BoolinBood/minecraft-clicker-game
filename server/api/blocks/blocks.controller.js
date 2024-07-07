@@ -8,8 +8,18 @@ const createBlock = async (req, res) => {
 }
 
 const getBlocks = async (req, res) => {
-  const blocks = await service.getBlocks().then(result => res.json(result));
-  return blocks;
+  const filterMode = req.query.filter;
+  let result;
+  if (!filterMode) {
+    result = await service.getBlocks().then(result => res.json(result));
+    return result;
+  } 
+  switch (filterMode) {
+    case 'random':
+      const limit = req.query.limit;
+      result = await service.getRandomBlocks(limit).then(result => res.json(result));
+  }
+  return result;
 };
 
 const getBlockById = async (req, res) => {

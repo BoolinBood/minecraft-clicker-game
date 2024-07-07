@@ -8,8 +8,18 @@ const createItem = async (req, res) => {
 }
 
 const getItems = async (req, res) => {
-  const items = await service.getItems().then(result => res.json(result));
-  return items;
+  const filterMode = req.query.filter;
+  let result;
+  if (!filterMode) {
+    result = await service.getBlocks().then(result => res.json(result));
+    return result;
+  } 
+  switch (filterMode) {
+    case 'random':
+      const limit = req.query.limit;
+      result = await service.getRandomItems(limit).then(result => res.json(result));
+  }
+  return result;
 };
 
 const getItemById = async (req, res) => {
