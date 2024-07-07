@@ -34,12 +34,14 @@ export default {
       'primary-700': '#85939C',
       'primary-800': '#1A2228',
       'primary-900': '#0D1114',
-      'red-alert': '#EC3219'
+      'red-alert': '#EC3219',
+      'green-alert': '#25e72e'
     },
     fontFamily: {
       'segoe-ui': ['Segoe UI', 'Tahoma'],
       'istok': ["Istok Web", 'sans-serif']
     }
+    
   },
   plugins: [],
 }
