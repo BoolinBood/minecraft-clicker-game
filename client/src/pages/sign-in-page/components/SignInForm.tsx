@@ -1,16 +1,30 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+import { Navigate, useNavigate } from "react-router-dom";
+import ClickerPage from "../../clicker-page/ClickerPage";
 const SignInForm = () => {
 
   const API_URL = 'http://10.4.53.25:9999';
   const CLICKER_PAGE_ROUTE = 'leaderboard';
-  const navigate = useNavigate();
+  const navigate= useNavigate();
+  const navigateClick = useNavigate();
   const [username, setUsername] = useState<String>('');
   const [password, setPassword] = useState<String>('');
   const [passwordIsCorrect, setPasswordIsCorrect] = useState<boolean>(true);
-  
+  const [state, setState] = useState(0);
+
+  const signClick = () => {
+    setState(1);
+
+    setTimeout(() => {
+      navigateClick("/clicker");
+    
+    },1000);
+  }
+
+  if(state === 1) {
+    return <ClickerPage/>
+  }
   const onSubmitHandler = async () => {
     const url = `${API_URL}/users/signin?username=${username}&password=${password}`;
     const logIn = await axios.get(url).then(
@@ -36,7 +50,7 @@ const SignInForm = () => {
           <input type="text" onChange={(e) => setUsername(e.target.value)} name="username" id="username" className="h-8 pl-2 bg-secondary-600 rounded-sm"/>
           <label htmlFor="password">Password {passwordIsCorrect ? <></> : <span className="text-red-alert">password is incorrect!</span>}</label>
           <input type="password" onChange={(e) => setPassword(e.target.value)} name="password" id="password" className="h-8 pl-2 bg-secondary-600 rounded-sm"/>
-          <button type="button" onClick={onSubmitHandler} value="Sign in" className="h-8 mt-8 bg-accent-500 rounded-sm">Sign in</button>
+          <button type="button" onClick={onSubmitHandler} onDoubleClick={signClick} value="Sign in" className="h-8 mt-8 bg-accent-500 rounded-sm">Sign in</button>
           <div className="font-segoe-ui text-primary-100 text-xs">New to this game? <span className="text-accent-500 underline">Create account</span></div>
         </div>
       </form>
