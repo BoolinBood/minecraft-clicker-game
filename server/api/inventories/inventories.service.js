@@ -1,12 +1,12 @@
 // Inventory type
 /*
-	ownedBy INT NOT NULL,
-	itemId INT NOT NULL,
-	amount INT NOT NULL,
-	marketInfo_onMarket BOOLEAN,
-	marketInfo_price DOUBLE,
-	FOREIGN KEY (itemId) REFERENCES items(id),
-	FOREIGN KEY (ownedBy) REFERENCES users(id)
+    ownedBy INT NOT NULL,
+    itemId INT NOT NULL,
+    amount INT NOT NULL,
+    marketInfo_onMarket BOOLEAN,
+    marketInfo_price DOUBLE NOT NULL,
+    FOREIGN KEY (itemId) REFERENCES items(id),
+    FOREIGN KEY (ownedBy) REFERENCES users(id)
 */
 
 const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable } = require("../../database/queries");

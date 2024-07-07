@@ -1,11 +1,10 @@
 // Item type
 /*
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(20) NOT NULL,
-	price DOUBLE NOT NULL,
-	rarity_name VARCHAR(20) NOT NULL,
-	rarity_chance DOUBLE NOT NULL,
-	imageURL VARCHAR(20) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    tradeValue INT NOT NULL,
+    rarity_name VARCHAR(20) NOT NULL,
+    rarity_chance DOUBLE NOT NULL
 */
 
 const { getAllRows, getRowById, updateRowById, deleteRowById, clearTable, getRandomRows } = require("../../database/queries");

@@ -1,11 +1,12 @@
 // User type
 /* 
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	inventoryId INT UNIQUE NOT NULL,
-	username VARCHAR(20) UNIQUE NOT NULL,
-	password VARCHAR(20) NOT NULL,
-	stats_coins BIGINT,
-	stats_luck DOUBLE
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    inventoryId INT UNIQUE NOT NULL,
+    username VARCHAR(20) UNIQUE NOT NULL,
+    password VARCHAR(20) NOT NULL,
+    stats_coins BIGINT,
+    stats_luck DOUBLE,
+    stats_damage INT
 */
 
 const db = require('../../database/connection');

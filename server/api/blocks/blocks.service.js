@@ -1,10 +1,9 @@
 // Block type
 /*
-  id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(20) NOT NULL,
-	health INT NOT NULL,
-	spawnChance DOUBLE NOT NULL,
-	imageURL VARCHAR(20) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    health INT NOT NULL,
+    spawnChance DOUBLE NOT NULL
 */
 
 const { getAllRows, getRowById, getRandomRows, updateRowById, deleteRowById, clearTable } = require("../../database/queries");
