@@ -1,32 +1,26 @@
 import React, { SetStateAction, useEffect, useState } from "react";
 import { Block } from "../../../types";
-import { motion } from 'framer-motion';
-import axios from "axios";
+import { motion } from "framer-motion";
+import { axiosClient } from "../../../lib/axios";
 
 interface Props {
-  currentState: Block | undefined,
-  setState: React.Dispatch<SetStateAction<Block | undefined>>
+  currentState: Block | undefined;
+  setState: React.Dispatch<SetStateAction<Block | undefined>>;
 }
 
 const MinecraftBlock = ({ currentState, setState }: Props) => {
-
-  const API_URL = 'http://10.4.53.25:9998`';
-
-  const [blockName, setBlockName] = useState<string>('');
-  
-  const getBlockUrl = `${API_URL}/blocks?filter=random&limit=1`;
+  const [blockName, setBlockName] = useState<string>("");
 
   const setNewBlock = async () => {
-   
-    await axios.get(getBlockUrl).then(res => {
+    await axiosClient.get("/blocks?filter=random&limit=1").then((res) => {
       setState(res.data[0]);
       setBlockName(res.data[0].name);
     });
-  }
+  };
 
   useEffect(() => {
     setNewBlock();
-  }, []);
+  });
 
   const onClickHandler = () => {
     if (!currentState) {
@@ -36,8 +30,8 @@ const MinecraftBlock = ({ currentState, setState }: Props) => {
     if (currentState.health <= 0) {
       setNewBlock();
       // currentState.health = 1;
-    };
-  }
+    }
+  };
 
   return (
     <div onClick={onClickHandler}>
@@ -47,7 +41,7 @@ const MinecraftBlock = ({ currentState, setState }: Props) => {
         src={`/assets/images/blocks/${blockName}.webp`}
       />
     </div>
-  )
-}
+  );
+};
 
 export default MinecraftBlock;
