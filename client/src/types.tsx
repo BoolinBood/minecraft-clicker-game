@@ -22,6 +22,17 @@ export type Item = {
   rarity_chance: number,
 }
 
+export interface ItemCardType {
+  ownedBy: number,
+  itemId: number,
+  itemName: string,
+  amount: number,
+  marketInfo_price: number,
+  tradeValue: number,
+  rarity_name: string,
+  rarity_chance: number
+}
+
 
 export type Inventory = {
   ownedBy: number,
@@ -32,4 +43,11 @@ export type Inventory = {
   marketInfo_price: number,
 }
 
-export type TradeReq = {}
+export type TradeReq = {
+  tradeId: number,
+  status: string,
+  sentBy: number,
+  sentTo: number,
+  requestItem: number,
+  exchangeWith: number
+}

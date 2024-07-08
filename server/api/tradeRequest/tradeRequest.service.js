@@ -1,7 +1,7 @@
 // Trade Request Type
 /*
     tradeId INT NOT NULL,
-    string VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL,
     sentBy INT NOT NULL,
     sentTo INT NOT NULL,
     requestItem INT NOT NULL,

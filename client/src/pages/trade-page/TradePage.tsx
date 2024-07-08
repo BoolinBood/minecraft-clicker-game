@@ -1,21 +1,10 @@
-// Interface for CardProps
-interface CardProps {
-    name: string;
-    rarity: string; 
-    price: string;
-}
 import Inventory from "./component/Inventory";
-import ItemCard from "../store-page/components/Itemcard";
 import IconTrade from "./component/trading"
 import PageNavigator from "../base.components/PageNavigator";
-const Trade = () => {
-  const cardProps: CardProps = {
-    name: "Ender of Eye",  
-    rarity: "",  
-    price: "10,000"       
-  };
-  
+import TradeItemCard from "./component/TradeItemCard";
+const TradePage = () => {
 
+  const item = JSON.parse(sessionStorage.getItem('tradeReq') || '');
 
   return (
     <div className="h-screen bg-secondary-800 flex items-center justify-center space-x-4">
@@ -23,7 +12,7 @@ const Trade = () => {
             <PageNavigator page="store" />
           </span>
       <div className="flex items-center gap-20">
-        <ItemCard {...cardProps} />
+        <TradeItemCard itemCard={item} />
       <div>
         <IconTrade/>
       </div>
@@ -32,9 +21,8 @@ const Trade = () => {
       </div>
       </div>
       
-      
     </div>
   );
 };
 
-export default Trade;
+export default TradePage;

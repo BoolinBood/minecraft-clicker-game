@@ -23,7 +23,7 @@ const getUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const id = req.params.id;
-  const user = await service.getUserById(id).then(result => res.json(result));
+  const user = await service.getUserById(id).then(result => res.json(result[0]));
   return user;
 };
 
@@ -49,6 +49,7 @@ const signInUser = async (req, res) => {
   if (foundUser) {
     res.json({
       userdata: {
+        id: foundUser.id,
         inventoryId: foundUser.inventoryId,
         username: foundUser.username,
         stats_coins: foundUser.stats_coins,

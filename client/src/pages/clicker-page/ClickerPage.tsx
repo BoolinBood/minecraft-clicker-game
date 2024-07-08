@@ -10,6 +10,7 @@ const ClickerPage = () => {
 
   const rawUserData = JSON.parse(sessionStorage.getItem('user') || '');
   const [userData, setUserData] = useState<User>(rawUserData);
+  
   const [currentBlock, setCurrentBlock] = useState<Block>();
   
   return (

@@ -20,16 +20,16 @@ INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Potion
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Enchanted Diamond Boots', 80, 'Uncommon', 0.3);
 INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Stick', 200, 'Legendary', 0.01);
 
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Stone', 100, 0.8);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Dirt', 50, 0.9);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Sand', 30, 0.7);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Oak Log', 75, 0.6);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Iron Ore', 200, 0.4);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Gold Ore', 150, 0.3);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Diamond Ore', 300, 0.1);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Bricks', 70, 0.5);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Gravel', 25, 0.85);
-INSERT INTO blocks (name, health, spawnChance) VALUES ('Wool', 40, 0.75);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Stone', 5, 0.8);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Dirt', 5, 0.9);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Sand', 3, 0.7);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Oak Log', 7, 0.6);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Iron Ore', 20, 0.4);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Gold Ore', 15, 0.3);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Diamond Ore', 30, 0.1);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Bricks', 7, 0.5);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Gravel', 2, 0.85);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Wool', 4, 0.75);
 
 INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (1, 1, 'Diamond Sword', 5, TRUE, 100);
 INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (2, 2, 'Diamond Pickaxe', 10, FALSE, 50);
