@@ -15,12 +15,13 @@ const MinecraftBlock = ({ currentState, setState }: Props) => {
     await axiosClient.get("/blocks?filter=random&limit=1").then((res) => {
       setState(res.data[0]);
       setBlockName(res.data[0].name);
+      
     });
   };
 
   useEffect(() => {
     setNewBlock();
-  });
+  },[]);
 
   const onClickHandler = () => {
     if (!currentState) {
@@ -29,7 +30,6 @@ const MinecraftBlock = ({ currentState, setState }: Props) => {
     currentState.health -= 1;
     if (currentState.health <= 0) {
       setNewBlock();
-      // currentState.health = 1;
     }
   };
 
