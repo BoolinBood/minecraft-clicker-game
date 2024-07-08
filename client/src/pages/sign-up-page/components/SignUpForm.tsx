@@ -1,11 +1,8 @@
-import axios from "axios";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { axiosClient } from "../../../lib/axios";
 
 const SignUpForm = () => {
-
-  const API_URL = 'http://10.4.53.25:9999';
-
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -17,8 +14,8 @@ const SignUpForm = () => {
       setPasswordValid(false);
       return;
     }
-    const url = `${API_URL}/users?username=${username}&password=${password}`;
-    await axios.post(url).then(() => navigate('../'));
+    const url = `/users?username=${username}&password=${password}`;
+    await axiosClient.post(url).then(() => navigate('../'));
   }
   
   return (

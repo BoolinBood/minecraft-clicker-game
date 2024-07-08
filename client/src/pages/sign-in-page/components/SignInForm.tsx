@@ -1,10 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import ClickerPage from "../../clicker-page/ClickerPage";
+import { axiosClient } from "../../../lib/axios";
 const SignInForm = () => {
-
-  const API_URL = 'http://10.4.53.25:9999';
 
   const CLICKER_PAGE_ROUTE = 'clicker';
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ const SignInForm = () => {
     setState(1);
 
     setTimeout(() => {
-      navigateClick("/clicker");
+      navigate("/clicker");
     
     },1000);
   }
@@ -26,8 +24,8 @@ const SignInForm = () => {
     return <ClickerPage/>
   }
   const onSubmitHandler = async () => {
-    const url = `${API_URL}/users/signin?username=${username}&password=${password}`;
-    const logIn = await axios.get(url).then(
+    const url = `/users/signin?username=${username}&password=${password}`;
+    const logIn = await axiosClient.get(url).then(
       (res) => {
         if (res.data.passwordIsCorrect) {
           setPasswordIsCorrect(state => state = true);
