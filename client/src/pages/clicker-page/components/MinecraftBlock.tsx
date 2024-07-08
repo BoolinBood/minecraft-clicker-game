@@ -1,7 +1,7 @@
 import React, { SetStateAction, useEffect, useState } from "react";
 import { Block } from "../../../types";
 import {motion} from 'framer-motion';
-import axios from "axios";
+import { axiosClient } from "../../../lib/axios";
 
 interface Props {
   currentState: Block | undefined,
@@ -9,12 +9,9 @@ interface Props {
 }
 
 const MinecraftBlock = ({currentState, setState}: Props) => {
-  
-  const API_URL = 'http://10.4.53.25:9999';
 
   const setNewBlock = async () => {
-    const getBlockUrl = `${API_URL}/blocks?filter=random&limit=1`;
-    await axios.get(getBlockUrl).then(res => {
+    await axiosClient.get('/blocks?filter=random&limit=1').then(res => {
       setState(res.data[0]);
     });
   }

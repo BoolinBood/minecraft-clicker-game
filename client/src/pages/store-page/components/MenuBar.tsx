@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react"
 import { User } from "../../../types";
-import axios from "axios";
 import Icon from "../../base.components/Icon";
+import { axiosClient } from "../../../lib/axios";
 
 const MenuBar = () => {
-
-  const API_URL = 'http://10.4.53.25:9999';
-
   const [userData, setUserData] = useState<User>();
   
   useEffect(() => {
     const sessionData: User = JSON.parse(sessionStorage.getItem('user') || '');
-    const url = `${API_URL}/users/${sessionData.id}`;
-    axios.get(url).then(user => {
+    const url = `/users/${sessionData.id}`;
+    axiosClient.get(url).then(user => {
       setUserData(user.data);
     });
   }, []);

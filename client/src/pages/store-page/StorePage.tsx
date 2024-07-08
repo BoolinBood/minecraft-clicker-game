@@ -2,16 +2,15 @@ import ItemCard from "./components/ItemCard"
 import PageNavigator from "../base.components/PageNavigator";
 import { useEffect, useState } from "react";
 import { ItemCardType } from "../../types";
-import axios from "axios";
 import MenuBar from "./components/MenuBar";
+import { axiosClient } from "../../lib/axios";
 
 const StorePage = () => {
-    const API_URL = 'http://10.4.53.25:9999';
     const [items, setItems] = useState<ItemCardType[]>([]);
 
     useEffect(() => {
-      const url = `${API_URL}/inventory?filter=getItems`;
-      axios.get(url).then(res => {
+      const url = `/inventory?filter=getItems`;
+      axiosClient.get(url).then(res => {
         setItems([...res.data]);
       });
     }, []);

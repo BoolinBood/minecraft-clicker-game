@@ -5,7 +5,7 @@ interface CardProps {
     price: string;
 }
 import Inventory from "./component/Inventory";
-import ItemCard from "../store-page/components/Itemcard";
+// import ItemCard from "../store-page/components/Itemcard";
 import IconTrade from "./component/trading"
 import PageNavigator from "../base.components/PageNavigator";
 const Trade = () => {
@@ -23,7 +23,7 @@ const Trade = () => {
             <PageNavigator page="store" />
           </span>
       <div className="flex items-center gap-20">
-        <ItemCard {...cardProps} />
+        {/* <ItemCard {...cardProps} /> */}
       <div>
         <IconTrade/>
       </div>
