@@ -12,6 +12,12 @@ const Inventory = () => {
   const [selectedItems, setSelectedItems] = useState<InventoryType[]>([]);
   const [inventory, setInventory] = useState<InventoryType[]>([]);
 
+  const getTotalTradeValue = () => {
+    let result = 0;
+    selectedItems.forEach(item => result += item.marketInfo_price);
+    return result;
+  }
+  
   useEffect(() => {
     const user: User = JSON.parse(sessionStorage.getItem('user') || '');
     const url = `${API_URL}/inventory/${user.id}`;
@@ -22,14 +28,15 @@ const Inventory = () => {
   
   return (
     <div className="w-full flex flex-col">
-      <div className="h-[244px] flex flex-row flex-wrap gap-2 p-2 bg-secondary-700 rounded-lg">
+      <div className="flex flex-row flex-wrap gap-2 p-2 bg-secondary-700 rounded-lg">
         {
           inventory.map((inv, idx) => <ItemBox key={idx} inventory={inv} setState={setSelectedItems}/>)
         }
       </div>
-      <div className="self-end flex gap-2 justify-center items-center">
-        <div className="text-primary-100 font-bold">Trade value {}</div>
+      <div className="self-end flex gap-2 mt-2 justify-center items-center">
+        <div className="text-primary-100 font-bold">Trade value {getTotalTradeValue()}</div>
         <Icon iconFileName="coin-20x20"/>
+        <button className="px-3 text-primary-100 bg-accent-500 font-bold flex items-center justify-center rounded">Trade</button>
       </div>
     </div>
   );

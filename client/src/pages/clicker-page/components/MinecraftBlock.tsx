@@ -31,7 +31,7 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
   const addItemToInventory = async () => {
     if (!item) return;
     const user: User = JSON.parse(sessionStorage.getItem('user') || '');
-    const url = `${API_URL}/inventory?ownedBy=${user.id}&itemId=${item.id}&itemName=${item.name}&amount=1&marketInfo_onMarket=0&marketInfo_price=${0}`
+    const url = `${API_URL}/inventory?ownedBy=${user.id}&itemId=${item.id}&itemName=${item.name}&amount=1&marketInfo_onMarket=0&marketInfo_price=${item.tradeValue}`
     await axios.post(url);
   }
   

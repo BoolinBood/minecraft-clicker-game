@@ -11,7 +11,7 @@ const TradePage = () => {
           <div className="w-[10%] flex justify-center items-center">
             <PageNavigator page="" />
           </div>
-          <div className="flex flex-grow justify-center">
+          <div className="flex flex-grow justify-center gap-10">
             <div className="w-fit flex flex-col justify-center items-center">
               <TradeItemCard itemCard={item} />
             </div>
