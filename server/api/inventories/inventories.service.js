@@ -42,9 +42,11 @@ const getInventoryById = async (id) => {
   
 };
 
-const getItemsInInventory = async () => {
+const getItemsInInventory = async (id) => {
   const sql = `
-    SELECT ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price, tradeValue, rarity_name, rarity_chance FROM inventories inv JOIN items item ON inv.itemId = item.id
+    SELECT ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price, tradeValue, rarity_name, rarity_chance 
+    FROM inventories inv JOIN items item ON inv.itemId = item.id
+    WHERE ownedBy != ${id};
   `;
 
   try {
@@ -55,7 +57,19 @@ const getItemsInInventory = async () => {
   }
 }
 
-const updateInventoryById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
+const updateInventoryById = async (id, obj) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  const cols = keys.map(key => `${key} = ?`).join(', ');
+  const sql = `UPDATE ${TABLE_NAME} SET ${cols} WHERE ownedBy = ${id}`;
+  
+  try {
+    const [rows] = await db.execute(sql, values);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+};
 
 const deleteInventoryById =  async (id) => await deleteRowById(TABLE_NAME, id);
 

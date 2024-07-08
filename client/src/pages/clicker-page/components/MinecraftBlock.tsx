@@ -13,6 +13,7 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
   const API_URL = 'http://10.4.53.25:9998';
 
   const [item, setItem] = useState<Item>();
+  const [label, setLabel] = useState<string>();
 
   const setNewBlock = async () => {
     const getBlockUrl = `${API_URL}/blocks?filter=random&limit=1`;
@@ -52,7 +53,7 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
 
       const itemWillDrop = Math.random() < item.rarity_chance;
       if (itemWillDrop) {
-        console.log(`ITEM DROPPED: ${item.name}`)
+        setLabel(`Dropped: ${item.name}`);
         addItemToInventory()
       };
     };
@@ -65,7 +66,7 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
         whileTap={{ scale: 0.9 }} 
         src={`/assets/images/blocks/${currentState?.name}.webp`}
       />
-      <span className="text-primary-100">{currentState?.health}</span>
+      <span className="text-primary-100">{label}</span>
     </div>
   )
 }

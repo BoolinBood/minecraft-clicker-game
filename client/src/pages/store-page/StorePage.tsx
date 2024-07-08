@@ -1,7 +1,7 @@
 import ItemCard from "./components/ItemCard"
 import PageNavigator from "../base.components/PageNavigator";
 import { useEffect, useState } from "react";
-import { ItemCardType } from "../../types";
+import { ItemCardType, User } from "../../types";
 import axios from "axios";
 import MenuBar from "./components/MenuBar";
 
@@ -10,7 +10,8 @@ const StorePage = () => {
     const [items, setItems] = useState<ItemCardType[]>([]);
 
     useEffect(() => {
-      const url = `${API_URL}/inventory?filter=getItems`;
+      const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+      const url = `${API_URL}/inventory?filter=getItems&id=${user.id}`;
       axios.get(url).then(res => {
         console.log(res.data);
         setItems([...res.data]);
