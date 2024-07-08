@@ -1,42 +1,35 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import BoxItems, { IBox } from "./BoxItems";
-import BookMagic from "../../../../public/assets/store.png";
+import { useEffect, useState } from "react";
+import { InventoryType, User } from "../../../types";
+import axios from "axios";
+import ItemBox from "./ItemBox";
 import Icon from "../../base.components/Icon";
-import ConfirmPage from "../../confirm-page/ConfirmPage"
+
+
 const Inventory = () => {
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
-  const items: IBox[] = new Array(34).fill({
-    image: BookMagic,
-  });
 
-  const handleItemClick = (index: number) => {
-    const isSelected = selectedItems.includes(index);
-    setSelectedItems(
-      isSelected
-        ? selectedItems.filter((i) => i !== index)
-        : [...selectedItems, index]
-    );
-  };
+  const API_URL = 'http://10.4.53.25:9998';
+  
+  const [selectedItems, setSelectedItems] = useState<InventoryType[]>([]);
+  const [inventory, setInventory] = useState<InventoryType[]>([]);
 
-  const[state, setState] = useState(0);
-  const navigate = useNavigate();
+  useEffect(() => {
+    const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+    const url = `${API_URL}/inventory/${user.id}`;
 
-  const tradeClicke = () => {
-    setState(1);
-    setTimeout(() => {
-      navigate("/confirm");
-    }, 100);
-  }
+    axios.get(url).then(res => setInventory([...res.data]));
+  }, []);
 
-  if(state == 1){
-    return <ConfirmPage/>
-  }
-
+  
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full min-h-[50%] bg-secondary-700 rounded-lg">
-        hell
+      <div className="h-[244px] flex flex-row flex-wrap gap-2 p-2 bg-secondary-700 rounded-lg">
+        {
+          inventory.map((inv, idx) => <ItemBox key={idx} inventory={inv} setState={setSelectedItems}/>)
+        }
+      </div>
+      <div className="self-end flex gap-2 justify-center items-center">
+        <div className="text-primary-100 font-bold">Trade value {}</div>
+        <Icon iconFileName="coin-20x20"/>
       </div>
     </div>
   );

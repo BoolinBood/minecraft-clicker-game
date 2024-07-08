@@ -30,7 +30,17 @@ const createInventory = async (obj) => {
 };
 const getInventories = async () => await getAllRows(TABLE_NAME);
 
-const getInventoryById = async (id) => await getRowById(TABLE_NAME, id);
+const getInventoryById = async (id) => {
+  const sql = `SELECT * FROM ${TABLE_NAME} WHERE ownedBy = ${id}`;
+
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+  
+};
 
 const getItemsInInventory = async () => {
   const sql = `
@@ -39,7 +49,7 @@ const getItemsInInventory = async () => {
 
   try {
     const [rows] = await db.query(sql);
-    return [rows];
+    return rows;
   } catch (err) {
     throw err;
   }

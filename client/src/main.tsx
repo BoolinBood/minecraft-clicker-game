@@ -9,6 +9,7 @@ import StorePage from "./pages/store-page/StorePage.tsx";
 import ConfirmPage from "./pages/confirm-page/ConfirmPage.tsx";
 import TradePage from "./pages/trade-page/TradePage.tsx";
 import SignUpPage from "./pages/sign-up-page/SignUpPage.tsx";
+import TradeInboxPage from "./pages/trade-inbox-page/TradeInboxPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +35,12 @@ const router = createBrowserRouter([
   { path: "confirm",
     element: <ConfirmPage /> 
   },
-  { path: "store/trade",
+  { path: "trade",
     element: <TradePage />
+  },
+  {
+    path: "inbox",
+    element: <TradeInboxPage />
   }
 ]);
 

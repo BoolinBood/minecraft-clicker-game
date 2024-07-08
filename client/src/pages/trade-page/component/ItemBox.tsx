@@ -34,7 +34,7 @@ const ItemBox = ({inventory, setState}: Props) => {
   
   return (
     <motion.button 
-      className={`p-4 bg-secondary-600 rounded-lg ${selected ? 'outline outline-2 outline-accent-500' : ''}`}
+      className={`p-4 h-fit w-fit bg-secondary-600 rounded-lg ${selected ? 'outline outline-2 outline-accent-500' : ''}`}
       onClick={onClickHandler}
       whileHover={{scale: 1.05}}
       whileTap={{opacity: 0.3}} 

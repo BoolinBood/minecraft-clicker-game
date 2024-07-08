@@ -11,14 +11,16 @@ const TradePage = () => {
           <div className="w-[10%] flex justify-center items-center">
             <PageNavigator page="" />
           </div>
-          <div className="w-fit flex flex-col justify-center items-center">
-            <TradeItemCard itemCard={item} />
-          </div>
-          <div className="w-6 flex flex-col justify-center items-center">
-            <Icon iconFileName="cycle"/>
-          </div>
-          <div className="w-[45%] flex justify-center items-center">
-            <Inventory/>  
+          <div className="flex flex-grow justify-center">
+            <div className="w-fit flex flex-col justify-center items-center">
+              <TradeItemCard itemCard={item} />
+            </div>
+            <div className="w-6 flex flex-col justify-center items-center">
+              <Icon iconFileName="cycle"/>
+            </div>
+            <div className="w-[45%] flex flex-col justify-center">
+              <Inventory/>
+            </div>
           </div>
     </div>
   );

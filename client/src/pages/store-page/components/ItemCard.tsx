@@ -13,7 +13,7 @@ const ItemCard: React.FC<CardProps> = ({itemCard}: CardProps) => {
   
   const onClickHandler = () => {
     sessionStorage.setItem('tradeReq', JSON.stringify(itemCard));
-    navigate(`./trade`);
+    navigate(`../trade`);
   }
   
   return (
