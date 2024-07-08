@@ -1,0 +1,43 @@
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (1, 'user1', 'password1', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (2, 'user2', 'password2', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (3, 'user3', 'password3', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (4, 'user4', 'password4', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (5, 'user5', 'password5', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (6, 'user6', 'password6', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (7, 'user7', 'password7', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (8, 'user8', 'password8', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (9, 'user9', 'password9', 0, 0, 1);
+INSERT INTO users (inventoryId, username, password, stats_coins, stats_luck, stats_damage) VALUES (10, 'user10', 'password10', 0, 0, 1);
+
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamond Sword', 50, 'Common', 0.5);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamond Pickaxe', 75, 'Uncommon', 0.3);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Spider Eye', 10, 'Common', 0.5);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Eye of Ender', 100, 'Rare', 0.1);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Bone', 45, 'Uncommon', 0.25);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Diamond', 150, 'Epic', 0.05);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Glow Berries', 60, 'Rare', 0.1);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Potion', 35, 'Common', 0.5);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Enchanted Diamond Boots', 80, 'Uncommon', 0.3);
+INSERT INTO items (name, tradeValue, rarity_name, rarity_chance) VALUES ('Stick', 200, 'Legendary', 0.01);
+
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Stone', 100, 0.8);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Dirt', 50, 0.9);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Sand', 30, 0.7);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Oak Log', 75, 0.6);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Iron Ore', 200, 0.4);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Gold Ore', 150, 0.3);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Diamond Ore', 300, 0.1);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Bricks', 70, 0.5);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Gravel', 25, 0.85);
+INSERT INTO blocks (name, health, spawnChance) VALUES ('Wool', 40, 0.75);
+
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (1, 1, 'Diamond Sword', 5, TRUE, 100);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (2, 2, 'Diamond Pickaxe', 10, FALSE, 50);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (3, 3, 'Spider Eye', 3, TRUE, 50);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (4, 4, 'Eye of Ender', 7, FALSE, 50);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (5, 5, 'Bone', 2, TRUE, 75);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (6, 6, 'Diamond', 8, FALSE, 50);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (7, 7, 'Glow Berries', 4, TRUE, 200);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (8, 8, 'Potion', 6, FALSE, 50);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (9, 9, 'Enchanted Diamond Boots', 9, TRUE, 150);
+INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (10, 10, 'Stick', 1, FALSE, 50);
