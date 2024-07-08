@@ -10,7 +10,7 @@
 
   CREATE TABLE items (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
+    name VARCHAR(40) NOT NULL,
     tradeValue INT NOT NULL,
     rarity_name VARCHAR(20) NOT NULL,
     rarity_chance DOUBLE NOT NULL
@@ -26,9 +26,10 @@
   CREATE TABLE inventories (
     ownedBy INT NOT NULL,
     itemId INT NOT NULL,
+    itemName VARCHAR(40) NOT NULL,
     amount INT NOT NULL,
     marketInfo_onMarket BOOLEAN,
-    marketInfo_price DOUBLE NOT NULL,
+    marketInfo_price INT NOT NULL,
     FOREIGN KEY (itemId) REFERENCES items(id),
     FOREIGN KEY (ownedBy) REFERENCES users(id)
   );

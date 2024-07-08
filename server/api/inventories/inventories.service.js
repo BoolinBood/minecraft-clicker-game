@@ -31,6 +31,19 @@ const getInventories = async () => await getAllRows(TABLE_NAME);
 
 const getInventoryById = async (id) => await getRowById(TABLE_NAME, id);
 
+const getItemsInInventory = async () => {
+  const sql = `
+    SELECT ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price, tradeValue, rarity_name, rarity_chance FROM inventories inv JOIN items item ON inv.itemId = item.id
+  `;
+
+  try {
+    const [rows] = await db.query(sql);
+    return [rows];
+  } catch (err) {
+    throw err;
+  }
+}
+
 const updateInventoryById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
 
 const deleteInventoryById =  async (id) => await deleteRowById(TABLE_NAME, id);
@@ -51,6 +64,7 @@ module.exports = {
   createInventory,
   getInventories,
   getInventoryById,
+  getItemsInInventory,
   updateInventoryById,
   deleteInventoryById,
   getLatestInventoryId,

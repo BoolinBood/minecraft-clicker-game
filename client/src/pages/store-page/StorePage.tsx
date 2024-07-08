@@ -1,45 +1,37 @@
-import ItemCard from "./components/Itemcard"
-import SearchBar from "./components/Search";
+import ItemCard from "./components/ItemCard"
 import PageNavigator from "../base.components/PageNavigator";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ClickerPage from "../clicker-page/ClickerPage";
-
+import { useEffect, useState } from "react";
+import { ItemCardType } from "../../types";
+import axios from "axios";
+import MenuBar from "./components/MenuBar";
 
 const StorePage = () => {
-    const cards = new Array(20).fill({
-        name: "Eye of Ender",
-        price: "10,000"
+    const API_URL = 'http://10.4.53.25:9999';
+    const [items, setItems] = useState<ItemCardType[]>([]);
+
+    useEffect(() => {
+      const url = `${API_URL}/inventory?filter=getItems`;
+      axios.get(url).then(res => {
+        setItems([...res.data]);
       });
-const [state, setState] = useState(0);
-const navigate = useNavigate();
-const onClickIcon = () => {
-  setState(1);
-  
-  setTimeout(() => {
-    navigate("/clicker");
-  },100);
-}
-
-if(state ===1){
-  return <ClickerPage/>
-}
-
-
+    }, []);
+    
       return (
-        <div className="h-screen bg-fixed bg-secondary-800 text-white flex flex-col items-center">
-          <button className="absolute top-1/2 left-4 transform -translate-y-1/2" onClick={onClickIcon}>
+        <div className="h-screen bg-secondary-800 flex">
+          <div className="w-[10%] flex justify-center items-center">
             <PageNavigator page="" />
-          </button>
-          <div className="bg-local mt-16">
-            <SearchBar />
-            <div
-              className="max-h-[70vh] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6"
-            >
-              {cards.map((card, index) =>  (
-                <ItemCard key={index} name={card.name} rarity={card.rarity} price={card.price} />
-              ))}
+          </div>
+          <div className="w-[80%] flex flex-col justify-center gap-5">
+            <MenuBar />
+            <div className="grid grid-flow-row auto-rows-min grid-cols-6 gap-5">
+              {
+                items.map((item, idx) => {
+                  return <ItemCard key={idx} itemCard={item} />
+                })
+              }
             </div>
+          </div>
+          <div className="w-[10%] flex justify-center items-center">
           </div>
         </div>
       );

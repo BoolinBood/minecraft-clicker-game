@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PageNavigator from "../base.components/PageNavigator"
 import UserBar from "./components/userBar/UserBar"
-import { Block, ClickBlock, User } from "../../types";
+import { Block, User } from "../../types";
 import MinecraftBlock from "./components/MinecraftBlock";
 
 
@@ -10,6 +10,7 @@ const ClickerPage = () => {
 
   const rawUserData = JSON.parse(sessionStorage.getItem('user') || '');
   const [userData, setUserData] = useState<User>(rawUserData);
+  
   const [currentBlock, setCurrentBlock] = useState<Block>();
   
   return (
