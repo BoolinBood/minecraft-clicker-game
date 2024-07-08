@@ -6,7 +6,7 @@ import axios from "axios";
 import MenuBar from "./components/MenuBar";
 
 const StorePage = () => {
-    const API_URL = 'http://10.4.53.25:9999';
+    const API_URL = 'http://10.4.53.25:9998';
     const [items, setItems] = useState<ItemCardType[]>([]);
 
     useEffect(() => {

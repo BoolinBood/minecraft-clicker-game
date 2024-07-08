@@ -10,7 +10,7 @@ interface Props {
 
 const MinecraftBlock = ({currentState, setState}: Props) => {
   
-  const API_URL = 'http://10.4.53.25:9999';
+  const API_URL = 'http://10.4.53.25:9998';
 
   const setNewBlock = async () => {
     const getBlockUrl = `${API_URL}/blocks?filter=random&limit=1`;

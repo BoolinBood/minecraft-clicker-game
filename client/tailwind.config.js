@@ -35,7 +35,9 @@ export default {
       'primary-800': '#1A2228',
       'primary-900': '#0D1114',
       'red-alert': '#EC3219',
-      'green-alert': '#25e72e'
+      'green-alert': '#25e72e',
+      'yellow-alert': '#f7e225',
+      'copper-alert': '#B87333'
     },
     fontFamily: {
       'segoe-ui': ['Segoe UI', 'Tahoma'],

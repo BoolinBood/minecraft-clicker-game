@@ -24,7 +24,10 @@ const LeaderTable = () => {
           <LeaderCard nth={10} username="finn" coins={1000}/>
         </tbody>
       </table>
-      <TablePagination />
+      <div className="mt-8">
+        <TablePagination />
+      </div>
+      
     </div>
   )
 }
