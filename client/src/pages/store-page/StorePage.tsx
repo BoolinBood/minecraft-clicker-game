@@ -12,6 +12,7 @@ const StorePage = () => {
     useEffect(() => {
       const url = `${API_URL}/inventory?filter=getItems`;
       axios.get(url).then(res => {
+        console.log(res.data);
         setItems([...res.data]);
       });
     }, []);
@@ -23,7 +24,7 @@ const StorePage = () => {
           </div>
           <div className="w-[80%] flex flex-col justify-center gap-5">
             <MenuBar />
-            <div className="grid grid-flow-row auto-rows-min grid-cols-6 gap-5">
+            <div className="grid grid-flow-row overflow-y-auto grid-cols-6 gap-5">
               {
                 items.map((item, idx) => {
                   return <ItemCard key={idx} itemCard={item} />

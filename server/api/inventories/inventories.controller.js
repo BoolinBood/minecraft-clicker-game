@@ -19,7 +19,7 @@ const getInventories = async (req, res) => {
       result = await service.getLatestInventoryId().then(result => res.json({id: result[0].id ? result[0].id : 1}));
       break;
     case 'getItems':
-      result = await service.getItemsInInventory().then(result => res.json(result[0]));
+      result = await service.getItemsInInventory().then(result => res.json(result));
       break;
   }
   return result;

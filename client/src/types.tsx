@@ -34,7 +34,7 @@ export interface ItemCardType {
 }
 
 
-export type Inventory = {
+export type InventoryType = {
   ownedBy: number,
   itemId: number,
   itemName: string,
