@@ -18,6 +18,11 @@ const getItems = async (req, res) => {
     case 'random':
       const limit = req.query.limit;
       result = await service.getRandomItems(limit).then(result => res.json(result));
+      break;
+    case 'chance':
+      const chance = req.query.chance;
+      result = await service.getItemsByChance(chance).then(result => res.json(result[0]));
+      break;
   }
   return result;
 };

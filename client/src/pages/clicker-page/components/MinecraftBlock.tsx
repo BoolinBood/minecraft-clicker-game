@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useState } from "react";
-import { Block } from "../../../types";
+import { Block, Item, User } from "../../../types";
 import {motion} from 'framer-motion';
 import axios from "axios";
 
@@ -10,7 +10,9 @@ interface Props {
 
 const MinecraftBlock = ({currentState, setState}: Props) => {
   
-  const API_URL = 'http://10.4.53.25:9999';
+  const API_URL = 'http://10.4.53.25:9998';
+
+  const [item, setItem] = useState<Item>();
 
   const setNewBlock = async () => {
     const getBlockUrl = `${API_URL}/blocks?filter=random&limit=1`;
@@ -18,18 +20,41 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
       setState(res.data[0]);
     });
   }
+
+  const setNewItem = async () => {
+    axios.get(`${API_URL}/items?filter=chance&chance=${Math.random()}`).then(res => {
+      console.log(res.data);
+      setItem(res.data);
+    });
+  }
+
+  const addItemToInventory = async () => {
+    if (!item) return;
+    const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+    const url = `${API_URL}/inventory?ownedBy=${user.id}&itemId=${item.id}&itemName=${item.name}&amount=1&marketInfo_onMarket=0&marketInfo_price=${0}`
+    await axios.post(url);
+  }
   
   useEffect(() => {
     setNewBlock();
+    setNewItem();
   }, []);
 
   const onClickHandler = () => {
-    if (!currentState) {
+    if (!currentState || !item) {
       return;
     }
     currentState.health -= 1;
-    if (currentState.health <= 0) {
+    const blockDestroyed = currentState.health <= 0;
+    if (blockDestroyed) {
       setNewBlock();
+      setNewItem();
+
+      const itemWillDrop = Math.random() < item.rarity_chance;
+      if (itemWillDrop) {
+        console.log(`ITEM DROPPED: ${item.name}`)
+        addItemToInventory()
+      };
     };
   }
   

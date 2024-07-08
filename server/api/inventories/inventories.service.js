@@ -2,6 +2,7 @@
 /*
     ownedBy INT NOT NULL,
     itemId INT NOT NULL,
+    itemName
     amount INT NOT NULL,
     marketInfo_onMarket BOOLEAN,
     marketInfo_price DOUBLE NOT NULL,
@@ -18,7 +19,7 @@ const createInventory = async (obj) => {
   const keys = Object.keys(obj);
   const values = Object.values(obj);
   const cols = keys.map(key => `${key}`).join(', ');
-  const sql = `INSERT INTO users (${cols}) VALUES (?, ?, ?, ?)`;
+  const sql = `INSERT INTO ${TABLE_NAME} (${cols}) VALUES (?, ?, ?, ?, ?, ?)`;
 
   try {
     const [rows] = await db.execute(sql, values);
