@@ -11,12 +11,21 @@ const getTradeReqs = async (req, res) => {
   const filterMode = req.query.filter;
   let result;
   if (!filterMode) {
-    result = await service.getTradeReqs().then(result => res.json(result));
+    result = await service.getTradeReq().then(result => res.json(result));
     return result;
   } 
   switch (filterMode) {
     case 'random':
       result = await service.getRandomTradeReq().then(result => res.json({id: result[0].id}));
+      break;
+    case 'pending':
+      const sentById = req.query.sentBy;
+      result = await service.getPendingTradeReq(sentById).then(result => res.json(result));
+      break;
+    case 'pending':
+      const sentToId = req.query.sentBy;
+      result = await service.getReceivingTradeReq(sentToId).then(result => res.json(result));
+      break;
   }
   return result;
 };

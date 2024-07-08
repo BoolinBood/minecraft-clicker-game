@@ -12,6 +12,18 @@ const Inventory = () => {
   const [selectedItems, setSelectedItems] = useState<InventoryType[]>([]);
   const [inventory, setInventory] = useState<InventoryType[]>([]);
 
+  const onClickHandler = () => {
+    sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+
+    const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+    const tradeReq = JSON.parse(sessionStorage.getItem('tradeReq') || '');
+
+    selectedItems.map(item => {
+      const url = `${API_URL}/tradeReq?status=${'pending'}&sentBy=${user.id}&sentTo=${item.ownedBy}&requestItem=${tradeReq.itemId}&exchangeWith=${item.itemId}`;
+      axios.post(url);
+    });
+  }
+
   const getTotalTradeValue = () => {
     let result = 0;
     selectedItems.forEach(item => result += item.marketInfo_price);
@@ -36,7 +48,7 @@ const Inventory = () => {
       <div className="self-end flex gap-2 mt-2 justify-center items-center">
         <div className="text-primary-100 font-bold">Trade value {getTotalTradeValue()}</div>
         <Icon iconFileName="coin-20x20"/>
-        <button className="px-3 text-primary-100 bg-accent-500 font-bold flex items-center justify-center rounded">Trade</button>
+        <button onClick={onClickHandler} className="px-3 text-primary-100 bg-accent-500 font-bold flex items-center justify-center rounded">Trade</button>
       </div>
     </div>
   );
