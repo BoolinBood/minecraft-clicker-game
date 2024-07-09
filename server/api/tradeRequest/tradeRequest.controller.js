@@ -19,15 +19,26 @@ const getTradeReqs = async (req, res) => {
       result = await service.getRandomTradeReq().then(result => res.json({id: result[0].id}));
       break;
     case 'pending':
-      const sentById = req.query.sentBy;
-      result = await service.getPendingTradeReq(sentById).then(result => res.json(result));
+      const receiverId = req.query.sentTo;
+      result = await service.getTradeReqWithSentToUser(receiverId).then(result => res.json(result));
       break;
     case 'receive':
-      const sentToId = req.query.sentBy;
-      result = await service.getReceivingTradeReq(sentToId).then(result => res.json(result));
+      const sentToId = req.query.sentTo;
+      result = await service.getTradeReqWithSentByUser(sentToId).then(result => res.json(result));
+      break;
+    case 'reqItem':
+      const tradeReqId = req.query.reqId;
+      result = await service.getTradeReqWithRequestItem(tradeReqId).then(result => res.json(result));
+      break;
+    case 'exchangeItem':
+      const exchangeTradeReqId = req.query.reqId;
+      result = await service.getTradeReqWithExchangeWith(exchangeTradeReqId).then(result => res.json(result));
       break;
     case 'latestId':
       result = await service.getTradeReqLatestId().then(result => res.json(result));
+      break;
+    case 'id':
+      result = await service.getTradeReqId().then(result => res.json(result));
       break;
   }
   return result;

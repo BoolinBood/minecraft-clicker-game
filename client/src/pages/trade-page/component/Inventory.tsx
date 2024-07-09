@@ -22,7 +22,7 @@ const Inventory = () => {
     axios.get(getLatestIdUrl)
     .then(latestId => {
       selectedItems.map(item => {
-        const url = `${API_URL}/tradeReq?tradeId=${latestId.data[0]['MAX(tradeId)']+1}&status=${'pending'}&sentBy=${user.id}&sentTo=${item.ownedBy}&requestItem=${tradeReq.itemId}&exchangeWith=${item.itemId}`;
+        const url = `${API_URL}/tradeReq?tradeId=${latestId.data[0]['MAX(tradeId)']+1}&status=${'pending'}&sentBy=${user.id}&sentTo=${tradeReq.ownedBy}&requestItem=${tradeReq.itemId}&exchangeWith=${item.itemId}`;
         axios.post(url);
       })
     })

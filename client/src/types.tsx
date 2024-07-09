@@ -51,3 +51,12 @@ export type TradeReq = {
   requestItem: number,
   exchangeWith: number
 }
+
+export type TradeItem = {
+  tradeId: number;
+  sentBy: number;
+  sentTo: number;
+  status: string;
+  requestItem: number;
+  user: User;
+}
