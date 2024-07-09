@@ -1,7 +1,7 @@
 import axios from "axios";
 import { User } from "../../../types";
 import { useEffect, useState } from "react";
-import TradeItems from "./TradeItems";
+import TradeItems from "./TradeItemsPending";
 
 interface Props {
   tradeId: number, 

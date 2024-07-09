@@ -56,7 +56,7 @@ const getTradeReqWithSentByUser = async (id) => {
 }
 
 const getTradeReqWithRequestItem = async (id) => {
-  const sql = `SELECT i.name FROM tradeRequests tr JOIN items i ON tr.requestItem = i.id WHERE tr.tradeId = ${id}`
+  const sql = `SELECT tr.tradeId, i.id, i.name FROM tradeRequests tr JOIN items i ON tr.requestItem = i.id WHERE tr.tradeId = ${id}`
   try {
     const [rows] = await db.query(sql);
     return rows;
@@ -89,7 +89,15 @@ const getTradeReqById = async (id) => await getRowById(TABLE_NAME, id);
 
 const updateTradeReqById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
 
-const deleteTradeReqById = async (id) => await deleteRowById(TABLE_NAME, id);
+const deleteTradeReqById = async (id) => {
+  const sql = `DELETE FROM ${TABLE_NAME} WHERE tradeId = ${id}`
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+};
 
 const clearTradeReqTable = async () => await clearTable(TABLE_NAME);
 

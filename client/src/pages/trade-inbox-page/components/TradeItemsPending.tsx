@@ -6,7 +6,7 @@ interface Props {
   tradeId: number;
 }
 
-const TradeItems = ({tradeId}: Props) => {
+const TradeItemsPending = ({tradeId}: Props) => {
 
   const API_URL = 'http://10.4.53.25:9996';
 
@@ -34,4 +34,4 @@ const TradeItems = ({tradeId}: Props) => {
   )
 }
 
-export default TradeItems
+export default TradeItemsPending

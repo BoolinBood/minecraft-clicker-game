@@ -60,9 +60,7 @@ const updateTradeReqById = async (req, res) => {
 
 const deleteTradeReqById = async (req, res) => {
   const id = req.params.id;
-  const user = await service.getTradeReqById(id).then(result => res.json(result));
   await service.deleteTradeReqById(id);
-  return user; 
 };
 
 module.exports = {

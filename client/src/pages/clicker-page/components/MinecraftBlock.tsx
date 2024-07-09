@@ -6,9 +6,10 @@ import axios from "axios";
 interface Props {
   currentState: Block | undefined,
   setState: React.Dispatch<SetStateAction<Block | undefined>>
+  setCoinState: React.Dispatch<SetStateAction<number | undefined>>
 }
 
-const MinecraftBlock = ({currentState, setState}: Props) => {
+const MinecraftBlock = ({currentState, setState, setCoinState}: Props) => {
   
   const API_URL = 'http://10.4.53.25:9996';
 
@@ -35,6 +36,15 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
     const url = `${API_URL}/inventory?ownedBy=${user.id}&itemId=${item.id}&itemName=${item.name}&amount=1&marketInfo_onMarket=0&marketInfo_price=${item.tradeValue}`
     await axios.post(url);
   }
+
+  const setCoinsToUser = async (amount: number) => {
+    const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+    axios.get(`${API_URL}/users/${user.id}`).then((user) => {
+      const newAmount = user.data.stats_coins + amount;
+      axios.put(`${API_URL}/users/${user.data.id}?stats_coins=${newAmount}`)
+      setCoinState(newAmount);
+    })
+  }
   
   useEffect(() => {
     setNewBlock();
@@ -54,7 +64,8 @@ const MinecraftBlock = ({currentState, setState}: Props) => {
       const itemWillDrop = Math.random() < item.rarity_chance;
       if (itemWillDrop) {
         setLabel(`Dropped: ${item.name}`);
-        addItemToInventory()
+        setCoinsToUser(item.rarity_chance * 100);
+        addItemToInventory();
       };
     };
   }
