@@ -5,7 +5,7 @@ import Icon from "../../base.components/Icon";
 
 const MenuBar = () => {
 
-  const API_URL = 'http://10.4.53.25:9998';
+  const API_URL = 'http://10.4.53.25:9996';
 
   const [userData, setUserData] = useState<User>();
   

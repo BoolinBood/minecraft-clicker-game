@@ -8,7 +8,7 @@ import axios from 'axios'
 
 const TradeInboxPage = () => {
 
-  const API_URL = 'http://10.4.53.25:9998';
+  const API_URL = 'http://10.4.53.25:9996';
   
   const [pendingRequests, setPendingRequests] = useState<TradeReq[]>([]);
   const [recevingRequests, setRecevingRequests] = useState<TradeReq[]>([]);
@@ -17,7 +17,7 @@ const TradeInboxPage = () => {
 
   useEffect(() => {
     const getPendingURL = `${API_URL}/tradeReq?filter=pending&sentBy=${user.id}`;
-    const getReceivingURL = `${API_URL}/tradeReq?filter=receiving&sentBy=${user.id}`;
+    const getReceivingURL = `${API_URL}/tradeReq?filter=receive&sentBy=${user.id}`;
 
     axios.get(getPendingURL).then(res => setPendingRequests([...res.data]));
     axios.get(getReceivingURL).then(res => setRecevingRequests([...res.data]));

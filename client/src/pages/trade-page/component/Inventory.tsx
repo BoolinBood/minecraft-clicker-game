@@ -7,7 +7,7 @@ import Icon from "../../base.components/Icon";
 
 const Inventory = () => {
 
-  const API_URL = 'http://10.4.53.25:9998';
+  const API_URL = 'http://10.4.53.25:9996';
   
   const [selectedItems, setSelectedItems] = useState<InventoryType[]>([]);
   const [inventory, setInventory] = useState<InventoryType[]>([]);
@@ -18,10 +18,14 @@ const Inventory = () => {
     const user: User = JSON.parse(sessionStorage.getItem('user') || '');
     const tradeReq = JSON.parse(sessionStorage.getItem('tradeReq') || '');
 
-    selectedItems.map(item => {
-      const url = `${API_URL}/tradeReq?status=${'pending'}&sentBy=${user.id}&sentTo=${item.ownedBy}&requestItem=${tradeReq.itemId}&exchangeWith=${item.itemId}`;
-      axios.post(url);
-    });
+    const getLatestIdUrl = `${API_URL}/tradeReq?filter=latestId`;
+    axios.get(getLatestIdUrl)
+    .then(latestId => {
+      selectedItems.map(item => {
+        const url = `${API_URL}/tradeReq?tradeId=${latestId.data[0]['MAX(tradeId)']+1}&status=${'pending'}&sentBy=${user.id}&sentTo=${item.ownedBy}&requestItem=${tradeReq.itemId}&exchangeWith=${item.itemId}`;
+        axios.post(url);
+      })
+    })
   }
 
   const getTotalTradeValue = () => {

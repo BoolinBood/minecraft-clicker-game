@@ -22,9 +22,12 @@ const getTradeReqs = async (req, res) => {
       const sentById = req.query.sentBy;
       result = await service.getPendingTradeReq(sentById).then(result => res.json(result));
       break;
-    case 'pending':
+    case 'receive':
       const sentToId = req.query.sentBy;
       result = await service.getReceivingTradeReq(sentToId).then(result => res.json(result));
+      break;
+    case 'latestId':
+      result = await service.getTradeReqLatestId().then(result => res.json(result));
       break;
   }
   return result;

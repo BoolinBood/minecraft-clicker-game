@@ -35,7 +35,7 @@
   );
 
   CREATE TABLE tradeRequests (
-    tradeId INT AUTO_INCREMENT PRIMARY KEY,
+    tradeId INT,
     status VARCHAR(20) NOT NULL,
     sentBy INT NOT NULL,
     sentTo INT NOT NULL,

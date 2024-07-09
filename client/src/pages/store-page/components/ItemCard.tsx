@@ -10,7 +10,7 @@ interface CardProps {
 
 const ItemCard: React.FC<CardProps> = ({itemCard}: CardProps) => {
 
-  const API_URL = 'http://10.4.53.25:9998';
+  const API_URL = 'http://10.4.53.25:9996';
   const navigate = useNavigate();
   
   const onClickTradeHandler = () => {

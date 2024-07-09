@@ -1,6 +1,6 @@
 // Trade Request Type
 /*
-    tradeId INT AUTO_INCREMENT PRIMARY KEY,
+    tradeId INT,
     status VARCHAR(20) NOT NULL,
     sentBy INT NOT NULL,
     sentTo INT NOT NULL,
@@ -21,7 +21,7 @@ const createTradeReq = async (obj) => {
   const keys = Object.keys(obj);
   const values = Object.values(obj);
   const cols = keys.map(key => `${key}`).join(', ');
-  const sql = `INSERT INTO ${TABLE_NAME} (${cols}) VALUES (?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO ${TABLE_NAME} (${cols}) VALUES (?, ?, ?, ?, ?, ?)`;
 
   try {
     const [rows] = await db.execute(sql, values);
@@ -34,6 +34,16 @@ const createTradeReq = async (obj) => {
 const getTradeReq = async () => await getAllRows(TABLE_NAME);
 
 const getRandomTradeReq = async (limit) => await getRandomRows(TABLE_NAME, limit)
+
+const getTradeReqLatestId = async () => {
+  const sql = `SELECT MAX(tradeId) FROM ${TABLE_NAME}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
 
 const getPendingTradeReq = async (sentById) => {
   const sql = `SELECT * FROM ${TABLE_NAME} WHERE sentBy = ${sentById} AND status='pending'`;
@@ -66,6 +76,7 @@ module.exports = {
   createTradeReq,
   getTradeReq,
   getTradeReqById,
+  getTradeReqLatestId,
   getRandomTradeReq,
   getPendingTradeReq,
   getReceivingTradeReq,

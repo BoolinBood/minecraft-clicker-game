@@ -6,7 +6,7 @@ import axios from "axios";
 import MenuBar from "./components/MenuBar";
 
 const StorePage = () => {
-    const API_URL = 'http://10.4.53.25:9998';
+    const API_URL = 'http://10.4.53.25:9996';
     const [items, setItems] = useState<ItemCardType[]>([]);
 
     useEffect(() => {
@@ -19,13 +19,13 @@ const StorePage = () => {
     }, []);
     
       return (
-        <div className="h-screen bg-secondary-800 flex">
+        <div className="h-screen bg-secondary-800 flex items-center">
           <div className="w-[10%] flex justify-center items-center">
             <PageNavigator page="" />
           </div>
-          <div className="w-[80%] flex flex-col justify-center gap-5">
+          <div className="w-[80%] h-[600px] flex flex-col justify-center gap-5">
             <MenuBar />
-            <div className="grid grid-flow-row overflow-y-auto grid-cols-6 gap-5">
+            <div className="grid overflow-y-auto grid-cols-6 gap-5">
               {
                 items.map((item, idx) => {
                   return <ItemCard key={idx} itemCard={item} />

@@ -10,7 +10,7 @@ interface Props {
 
 const MinecraftBlock = ({currentState, setState}: Props) => {
   
-  const API_URL = 'http://10.4.53.25:9998';
+  const API_URL = 'http://10.4.53.25:9996';
 
   const [item, setItem] = useState<Item>();
   const [label, setLabel] = useState<string>();

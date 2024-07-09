@@ -39,7 +39,6 @@ const getInventoryById = async (id) => {
   } catch (err) {
     throw err;
   }
-  
 };
 
 const getItemsInInventory = async (id) => {
