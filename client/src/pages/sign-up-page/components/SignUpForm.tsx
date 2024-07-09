@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../../../lib/axios";
 
 const SignUpForm = () => {
+
+  const API_URL = 'http://10.4.53.25:9996';
+
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');

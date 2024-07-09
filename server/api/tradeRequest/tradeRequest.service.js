@@ -1,6 +1,6 @@
 // Trade Request Type
 /*
-    tradeId INT NOT NULL,
+    tradeId INT,
     status VARCHAR(20) NOT NULL,
     sentBy INT NOT NULL,
     sentTo INT NOT NULL,
@@ -30,22 +30,86 @@ const createTradeReq = async (obj) => {
     throw err;
   }
 };
+
 const getTradeReq = async () => await getAllRows(TABLE_NAME);
 
 const getRandomTradeReq = async (limit) => await getRandomRows(TABLE_NAME, limit)
+
+const getTradeReqWithSentToUser = async (id) => {
+  const sql = `SELECT DISTINCT(tr.tradeId), tr.status, u.username FROM tradeRequests tr JOIN users u ON tr.sentTo = u.id WHERE u.id = ${id}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
+const getTradeReqWithSentByUser = async (id) => {
+  const sql = `SELECT DISTINCT(tr.tradeId), tr.status, u.username FROM tradeRequests tr JOIN users u ON tr.sentBy = u.id WHERE u.id != ${id}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
+const getTradeReqWithRequestItem = async (id) => {
+  const sql = `SELECT tr.tradeId, i.id, i.name FROM tradeRequests tr JOIN items i ON tr.requestItem = i.id WHERE tr.tradeId = ${id}`
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
+const getTradeReqWithExchangeWith = async (id) => {
+  const sql = `SELECT i.name FROM tradeRequests tr JOIN items i ON tr.exchangeWith = i.id WHERE tr.tradeId = ${id}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
+const getTradeReqLatestId = async () => {
+  const sql = `SELECT MAX(tradeId) FROM ${TABLE_NAME}`;
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
 
 const getTradeReqById = async (id) => await getRowById(TABLE_NAME, id);
 
 const updateTradeReqById = async (id, obj) => await updateRowById(TABLE_NAME, id, obj);
 
-const deleteTradeReqById =  async (id) => await deleteRowById(TABLE_NAME, id);
+const deleteTradeReqById = async (id) => {
+  const sql = `DELETE FROM ${TABLE_NAME} WHERE tradeId = ${id}`
+  try {
+    const [rows] = await db.query(sql);
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+};
 
 const clearTradeReqTable = async () => await clearTable(TABLE_NAME);
 
 module.exports = {
   createTradeReq,
   getTradeReq,
+  getTradeReqWithSentToUser,
+  getTradeReqWithSentByUser,
+  getTradeReqWithRequestItem,
+  getTradeReqWithExchangeWith,
   getTradeReqById,
+  getTradeReqLatestId,
   getRandomTradeReq,
   updateTradeReqById,
   deleteTradeReqById,

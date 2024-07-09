@@ -11,32 +11,19 @@ const TradePage = () => {
           <div className="w-[10%] flex justify-center items-center">
             <PageNavigator page="" />
           </div>
-          <div className="w-fit flex flex-col justify-center items-center">
-            <TradeItemCard itemCard={item} />
-          </div>
-          <div className="w-6 flex flex-col justify-center items-center">
-            <Icon iconFileName="cycle"/>
-          </div>
-          <div className="w-[45%] flex justify-center items-center">
-            <Inventory/>  
+          <div className="flex flex-grow justify-center gap-10">
+            <div className="w-fit flex flex-col justify-center items-center">
+              <TradeItemCard itemCard={item} />
+            </div>
+            <div className="w-6 flex flex-col justify-center items-center">
+              <Icon iconFileName="cycle"/>
+            </div>
+            <div className="w-[45%] flex flex-col justify-center">
+              <Inventory/>
+            </div>
           </div>
     </div>
   );
 };
-
-{/* <div className="h-screen bg-secondary-800 flex items-center justify-center space-x-4">
-      <span className="absolute top-1/2 left-20 transform -translate-y-1/2">
-          <PageNavigator page="store" />
-      </span>
-      <div className="flex items-center gap-20">
-        <TradeItemCard itemCard={item} />
-      <div>
-        <Icon iconFileName="cycle"/>
-      </div>
-      <div>
-          <Inventory/>  
-      </div>
-      </div>
-    </div> */}
 
 export default TradePage;

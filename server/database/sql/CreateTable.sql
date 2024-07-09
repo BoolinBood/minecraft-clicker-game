@@ -35,8 +35,8 @@
   );
 
   CREATE TABLE tradeRequests (
-    tradeId INT NOT NULL,
-    string VARCHAR(20) NOT NULL,
+    tradeId INT,
+    status VARCHAR(20) NOT NULL,
     sentBy INT NOT NULL,
     sentTo INT NOT NULL,
     requestItem INT NOT NULL,

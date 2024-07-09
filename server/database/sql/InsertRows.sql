@@ -41,3 +41,16 @@ INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket,
 INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (8, 8, 'Potion', 6, FALSE, 50);
 INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (9, 9, 'Enchanted Diamond Boots', 9, TRUE, 150);
 INSERT INTO inventories (ownedBy, itemId, itemName, amount, marketInfo_onMarket, marketInfo_price) VALUES (10, 10, 'Stick', 1, FALSE, 50);
+
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (1, 'Pending', 1, 2, 1, 2);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (1, 'Pending', 1, 2, 1, 1);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (1, 'Pending', 1, 2, 1, 3);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (2, 'Pending', 2, 3, 2, 3);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (3, 'Pending', 3, 4, 3, 4);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (4, 'Pending', 4, 5, 4, 5);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (5, 'Pending', 5, 6, 5, 6);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (6, 'Pending', 6, 7, 6, 7);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (7, 'Pending', 7, 8, 7, 8);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (8, 'Pending', 8, 9, 8, 9);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (9, 'Pending', 9, 10, 9, 10);
+INSERT INTO tradeRequests (tradeId, status, sentBy, sentTo, requestItem, exchangeWith) VALUES (10, 'Pending', 10, 1, 10, 1);

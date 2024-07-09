@@ -34,7 +34,7 @@ export interface ItemCardType {
 }
 
 
-export type Inventory = {
+export type InventoryType = {
   ownedBy: number,
   itemId: number,
   itemName: string,
@@ -50,4 +50,13 @@ export type TradeReq = {
   sentTo: number,
   requestItem: number,
   exchangeWith: number
+}
+
+export type TradeItem = {
+  tradeId: number;
+  sentBy: number;
+  sentTo: number;
+  status: string;
+  requestItem: number;
+  user: User;
 }

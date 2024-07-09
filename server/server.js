@@ -14,12 +14,7 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 4026;
 const SERVER_IP = process.env.SERVER_IP || '10.4.53.25';
 
-router.get('^/$|index(.html)?', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
-
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use((req, res, next) => {
   console.log(`${req.method}\t${req.url}`);

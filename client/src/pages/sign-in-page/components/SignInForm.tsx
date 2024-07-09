@@ -4,6 +4,7 @@ import ClickerPage from "../../clicker-page/ClickerPage";
 import { axiosClient } from "../../../lib/axios";
 const SignInForm = () => {
 
+  const API_URL = 'http://10.4.53.25:9996';
   const CLICKER_PAGE_ROUTE = 'clicker';
   const navigate = useNavigate();
   const [username, setUsername] = useState<String>('');

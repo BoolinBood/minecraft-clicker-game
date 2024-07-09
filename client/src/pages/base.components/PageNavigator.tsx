@@ -25,7 +25,7 @@ const PageNavigator = ({page}: Props) => {
     page == 'clicker' ?
     <div className="flex flex-col gap-4">
       <PageNavigatorButton  iconFileName="store" pathTo="../store"/>
-      <PageNavigatorButton  iconFileName="scale" pathTo="../trade"/>
+      <PageNavigatorButton  iconFileName="scale" pathTo="../inbox"/>
       <PageNavigatorButton  iconFileName="trophy" pathTo="../leaderboard"/>
     </div> :
     <PageNavigatorButton  iconFileName="chevron-left" pathTo="../clicker"/>

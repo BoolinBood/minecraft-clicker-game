@@ -1,7 +1,8 @@
 import React from "react";
 import Icon from "../../base.components/Icon";
-import { ItemCardType } from "../../../types";
+import { ItemCardType, User } from "../../../types";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface CardProps {
   itemCard: ItemCardType
@@ -9,11 +10,25 @@ interface CardProps {
 
 const ItemCard: React.FC<CardProps> = ({itemCard}: CardProps) => {
 
+  const API_URL = 'http://10.4.53.25:9996';
   const navigate = useNavigate();
   
-  const onClickHandler = () => {
+  const onClickTradeHandler = () => {
     sessionStorage.setItem('tradeReq', JSON.stringify(itemCard));
-    navigate(`./trade`);
+    navigate(`../trade`);
+  }
+
+  const onClickBuyHandler = () => {
+    const user: User = JSON.parse(sessionStorage.getItem('user') || '');
+    const getUserUrl = `${API_URL}/users/${user.id}`;
+    axios.get(getUserUrl).then(user => {
+      const userCanBuyItem = user.data.stats_coins > itemCard.marketInfo_price;
+      if (!userCanBuyItem) return;
+      const updateInventory = `${API_URL}/inventory/${itemCard.itemId}?ownedBy=${user.data.id}`;
+      const updateUser = `${API_URL}/users/${user.data.id}?stats_coins=${user.data.stats_coins - itemCard.marketInfo_price}`;
+      axios.put(updateInventory);
+      axios.put(updateUser);
+    })
   }
   
   return (
@@ -37,12 +52,12 @@ const ItemCard: React.FC<CardProps> = ({itemCard}: CardProps) => {
         </div>
       </div>
       <div className="mt-2 text-primary-100 flex items-center justify-between">
-        <div className="flex gap-1 flex-grow items-center justify-center font-bold text-xs not-italic font-segoe-ui">
+        <button onClick={onClickBuyHandler} className="flex gap-1 flex-grow items-center justify-center rounded py-1 font-bold text-xs not-italic font-segoe-ui hover:bg-secondary-700">
           <div>{itemCard.marketInfo_price}</div>
           <Icon iconFileName="coin-20x20" />
-        </div>
+        </button>
         <div className="font-bold flex-grow text-center text-xs not-italic font-segoe-ui">or</div>
-        <button onClick={onClickHandler} className="font-bold flex-grow text-xs not-italic font-segoe-ui px-2 py-1 text-primary-100 bg-accent-500 hover:bg-accent-600 rounded">
+        <button onClick={onClickTradeHandler} className="font-bold flex-grow text-xs not-italic font-segoe-ui px-2 py-1 text-primary-100 bg-accent-500 hover:bg-accent-600 rounded">
           Trade
         </button>
       </div>
